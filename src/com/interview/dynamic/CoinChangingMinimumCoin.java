@@ -68,8 +68,9 @@ public class CoinChangingMinimumCoin {
      * Returns Integer.MAX_VALUE - 1 if solution is not possible.
      */
     public int minimumCoinBottomUp(int total, int coins[]){
-        int T[] = new int[total + 1];
-        int R[] = new int[total + 1];
+        int T[] = new int[total + 1];  // Minimum number of coins required to form a total of i
+        int R[] = new int[total + 1];  // Last coin denomination used to achieve the total sum i
+
         T[0] = 0;
         for(int i=1; i <= total; i++){
             T[i] = Integer.MAX_VALUE-1;
@@ -77,10 +78,11 @@ public class CoinChangingMinimumCoin {
         }
         for(int j=0; j < coins.length; j++){
             for(int i=1; i <= total; i++){
+                // Current coin can only be used if its denomination is less than or equal to current total - "i"
                 if(i >= coins[j]){
-                    if (T[i - coins[j]] + 1 < T[i]) {
+                    if (T[i - coins[j]] + 1 < T[i]) { // +1 - to add current coin at coin[j]
                         T[i] = 1 + T[i - coins[j]];
-                        R[i] = j;
+                        R[i] = j;    // Store the last denomination used to achieve minimum number of coins
                     }
                 }
             }
