@@ -24,12 +24,12 @@ class FinishTimeComparator implements Comparator<Job>{
             return 1;
         }
     }
-    
+
 }
 
 /**
  * http://www.cs.princeton.edu/courses/archive/spr05/cos423/lectures/06dynamic-programming.pdf
- * Given set of jobs with start and end interval and profit, how to maximize profit such that 
+ * Given set of jobs with start and end interval and profit, find out the order to schedule jobs to maximize profit such that
  * jobs in subset do not overlap.
  */
 public class WeightedJobSchedulingMaximumProfit {
@@ -46,11 +46,13 @@ public class WeightedJobSchedulingMaximumProfit {
         int T[] = new int[jobs.length];
         FinishTimeComparator comparator = new FinishTimeComparator();
         Arrays.sort(jobs, comparator);
-        
+
         T[0] = jobs[0].profit;
         for(int i=1; i < jobs.length; i++){
-            T[i] = Math.max(jobs[i].profit, T[i-1]);
+            T[i] = Math.max(jobs[i].profit, T[i-1]); // Profit by not starting the job
             for(int j=i-1; j >=0; j--){
+
+                // Note equality - if finish and start times match - we do not consider them to be overlapping
                 if(jobs[j].end <= jobs[i].start){
                     T[i] = Math.max(T[i], jobs[i].profit + T[j]);
                     break;
@@ -65,7 +67,7 @@ public class WeightedJobSchedulingMaximumProfit {
         }
         return maxVal;
     }
-    
+
     public static void main(String args[]){
         Job jobs[] = new Job[6];
         jobs[0] = new Job(1,3,5);
