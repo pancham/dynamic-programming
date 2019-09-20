@@ -78,6 +78,13 @@ public class StockBuySellKTransactions {
                 T[i][j] = Math.max(T[i][j-1], prices[j] + maxDiff);
                 maxDiff = Math.max(maxDiff, T[i-1][j] - prices[j]);
             }
+
+            // Above can also be written as:
+//            int maxDiff = prices[0];
+//            for (int j = 1; j < T[0].length; j++) {
+//                T[i][j] = Math.max(T[i][j-1], prices[j] - maxDiff);
+//                maxDiff = Math.max(maxDiff, Math.Abs(T[i-1][j] - prices[j]));
+//            }
         }
         printActualSolution(T, prices);
         return T[K][prices.length-1];

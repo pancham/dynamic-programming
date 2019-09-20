@@ -20,14 +20,19 @@ public class MaxSumForNonAdjacentElements {
      * Fast DP solution.
      */
     public int maxSum(int arr[]) {
-        int excl = 0;
-        int incl = arr[0];
+        // Holds max sum possible excluding previous element, this can be added to current element to find probable next
+        // maximum since previous elements is guaranteed to be not included. Note that this may have not included multiple
+        // previous elements
+        int maxSumExcludingPrevious = 0;
+        int maxNonAdjacentSumSoFar = arr[0];
         for (int i = 1; i < arr.length; i++) {
-            int temp = incl;
-            incl = Math.max(excl + arr[i], incl);
-            excl = temp;
+            int temp = maxNonAdjacentSumSoFar;
+            maxNonAdjacentSumSoFar = Math.max(maxSumExcludingPrevious + arr[i], maxNonAdjacentSumSoFar);
+
+            // The temp does not include the current element
+            maxSumExcludingPrevious = temp;
         }
-        return incl;
+        return maxNonAdjacentSumSoFar;
     }
 
     /**

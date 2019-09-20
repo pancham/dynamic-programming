@@ -15,6 +15,7 @@ package com.interview.dynamic;
 public class MaximumSumSubsequence {
 
     public int maxSum(int arr[]){
+        // This array maintains max increasing sum till ith postition
         int T[] = new int[arr.length];
 
         for (int i = 0; i < T.length; i++) {
@@ -23,6 +24,9 @@ public class MaximumSumSubsequence {
 
         for(int i=1; i < T.length; i++){
             for(int j = 0; j < i; j++){
+                // If value at j is less than value at i, it is an increasing sequence,
+                // So - look the sum may also form an increasing sum subsequence, hence take max of t[i] and
+                // max till j - t[j] + value at i
                 if(arr[j] < arr[i]){
                     T[i] = Math.max(T[i], T[j] + arr[i]);
                 }
@@ -37,7 +41,7 @@ public class MaximumSumSubsequence {
         }
         return max;
     }
-    
+
     public static void main(String args[]){
         MaximumSumSubsequence mss = new MaximumSumSubsequence();
         int arr[] = {1, 101, 10, 2, 3, 100,4};

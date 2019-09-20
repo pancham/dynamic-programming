@@ -43,7 +43,7 @@ public class WildCardMatching {
                 if (pattern[j-1] == '?' || str[i-1] == pattern[j-1]) {
                     T[i][j] = T[i-1][j-1];
                 } else if (pattern[j-1] == '*'){
-                    T[i][j] = T[i-1][j] || T[i][j-1];
+                    T[i][j] = T[i-1][j] || T[i][j-1]; // Refer to RegexMatching - how does this differ from checking at [i][j - 2]
                 }
             }
         }

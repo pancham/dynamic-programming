@@ -40,11 +40,13 @@ public class TopologicalSort<T> {
             if(visited.contains(childVertex)){
                 continue;
             }
+
+            // TODO: do it in do while
             topSortUtil(childVertex,stack,visited);
         }
         stack.offerFirst(vertex);
     }
-    
+
     public static void main(String args[]){
         Graph<Integer> graph = new Graph<>(true);
         graph.addEdge(1, 3);
@@ -54,7 +56,7 @@ public class TopologicalSort<T> {
         graph.addEdge(6, 3);
         graph.addEdge(3, 8);
         graph.addEdge(8, 11);
-        
+
         TopologicalSort<Integer> sort = new TopologicalSort<Integer>();
         Deque<Vertex<Integer>> result = sort.topSort(graph);
         while(!result.isEmpty()){

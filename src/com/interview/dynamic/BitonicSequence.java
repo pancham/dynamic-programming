@@ -19,7 +19,7 @@ public class BitonicSequence {
                 }
             }
         }
-        
+
         for(int i = arr.length-2; i >=0 ; i--){
             for(int j = arr.length-1; j > i; j--){
                 if(arr[i] > arr[j]){
@@ -29,18 +29,18 @@ public class BitonicSequence {
         }
         int max = 0;
         for(int i=0; i < arr.length; i++){
-            if(max < lis[i] + lds[i]-1){
+            if(max < lis[i] + lds[i]-1){  // -1 because the element from which sequence starts decreasing in included in both
                 max = lis[i] + lds[i] -1;
             }
         }
         return max;
     }
-    
+
     public static void main(String args[]){
         BitonicSequence bs = new BitonicSequence();
         int[] arr = {1,4,3,7,2,1,8,11,13,0};
         int r = bs.longestSequence(arr);
         System.out.print(r);
-    
+
     }
 }
