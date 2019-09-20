@@ -27,6 +27,7 @@ public class Knapsack01 {
      * Solves 0/1 knapsack in bottom up dynamic programming
      */
     public int bottomUpDP(int val[], int wt[], int W){
+        // Rows: num of items + 1
         int K[][] = new int[val.length+1][W+1];
         for(int i=0; i <= val.length; i++){
             for(int j=0; j <= W; j++){
@@ -35,8 +36,16 @@ public class Knapsack01 {
                     continue;
                 }
                 if(j - wt[i-1] >= 0){
+                    // Assumption: item can be picked only once
+                    // Max of:
+                    //      Just picking max value items upto previous weight (ignoring current one)
+                    //      AND
+                    //      Picking items weighing (j - current weight*) using previous items** + value of item at current weight
+                    //          * - item at current weight is at (i - 1) because matrix num of rows if (num of items + 1)
+                    //          ** - since an item can be selected only once
                     K[i][j] = Math.max(K[i-1][j], K[i-1][j-wt[i-1]] + val[i-1]);
                 }else{
+                    // Max value items weighing j, composed of individual items - each of whoose weight is < j
                     K[i][j] = K[i-1][j];
                 }
             }
