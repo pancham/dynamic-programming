@@ -2,9 +2,9 @@ package com.interview.dynamic;
 /**
  * Date 06/24/2015
  * @author Tushar Roy
- * 
- * Write a program to perform regex matching with * an . 
- * 
+ *
+ * Write a program to perform regex matching with * an .
+ *
  * References : http://leetcode.com/2011/09/regular-expression-matching.html
  */
 public class RegexMatching {
@@ -12,25 +12,25 @@ public class RegexMatching {
     public boolean matchRegexRecursive(char[] str, char[] pattern){
         return matchRegexRecursive(str,pattern,0,0);
     }
-    
+
     private boolean matchRegexRecursive(char text[], char pattern[], int pos1, int pos2){
         //if pos2 has reached end of pattern means pos2 should also reach end of text for match
         //to happen
-        if(pos2 == pattern.length) { 
+        if(pos2 == pattern.length) {
             return pos1 == text.length;
-        } 
-      
+        }
+
         //if next character is not * means either current value at pattern and text should be same
         //or current value at pattern should be . in which case you can skip one character of text
         if(pos2 == pattern.length - 1 || pattern[pos2+1] != '*') {
             return (pos1 < text.length && (text[pos1] == pattern[pos2] || pattern[pos2] == '.')) && matchRegexRecursive(text, pattern, pos1+1, pos2+1);
         }
-  
+
         //if we have case like abc and ad*bc so here we totally skip d*
         if(matchRegexRecursive(text, pattern, pos1, pos2+2)){
             return true;
         }
-  
+
         //For case like abbc and ab*c match first b with b* and then next b to c. If that does not work out
         //then try next b with b* and then c with c and so on.
         //if pattern current val is . then skip one character at time from text till we either reach end of text
@@ -52,9 +52,9 @@ public class RegexMatching {
 
         T[0][0] = true;
         //Deals with patterns like a* or a*b* or a*b*c*
-        for (int i = 1; i < T[0].length; i++) {
-            if (pattern[i-1] == '*') {
-                T[0][i] = T[0][i - 2];
+        for (int j = 1; j < T[0].length; j++) {
+            if (pattern[j-1] == '*') {
+                T[0][j] = T[0][j - 2];  // -2 because it can match 0 or more previous characters
             }
         }
 
@@ -63,10 +63,20 @@ public class RegexMatching {
                 if (pattern[j - 1] == '.' || pattern[j - 1] == text[i - 1]) {
                     T[i][j] = T[i-1][j-1];
                 } else if (pattern[j - 1] == '*')  {
-                    T[i][j] = T[i][j - 2];
-                    if (pattern[j-2] == '.' || pattern[j - 2] == text[i - 1]) {
-                        T[i][j] = T[i][j] | T[i - 1][j];
+                    T[i][j] = T[i][j - 2]; // 0 match of previous character
+                    if (pattern[j-2] == '.' || pattern[j - 2] == text[i - 1]) { // check for ".*" pattern
+                        T[i][j] = T[i][j] | T[i - 1][j];    // either 0 match of previous character (line 66) or there is a match till previous character
                     }
+                    /**
+                     * Lines 67 - 69 can also be written as
+                     */
+//                    if (
+//                            !T[i][j] &&
+//                            (pattern[j-2] == '.' || pattern[j - 2] == text[i - 1])
+//                      ) {
+//                        T[i][j] = T[i - 1][j];
+//                    }
+
                 } else {
                     T[i][j] = false;
                 }
