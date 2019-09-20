@@ -36,15 +36,17 @@ public class CoinChanging {
     /**
      * Space efficient DP solution
      */
-    public int numberOfSolutionsOnSpace(int total, int arr[]){
+    public int numberOfSolutionsOnSpace(int total, int coins[]){
 
         int temp[] = new int[total+1];
 
         temp[0] = 1;
-        for(int i=0; i < arr.length; i++){
+        for(int i=0; i < coins.length; i++){
             for(int j=1; j <= total ; j++){
-                if(j >= arr[i]){
-                    temp[j] += temp[j-arr[i]];
+                if(j >= coins[i]){
+                    // This is achieved by adding coins[i] to each of the combinations at temp[j-coins[i]]
+                    // Note that the total number of combinations remains same
+                    temp[j] += temp[j-coins[i]];
                 }
             }
         }
@@ -58,7 +60,7 @@ public class CoinChanging {
         List<Integer> result = new ArrayList<>();
         printActualSolution(result, total, coins, 0);
     }
-    
+
     private void printActualSolution(List<Integer> result,int total,int coins[],int pos){
         if(total == 0){
             for(int r : result){
