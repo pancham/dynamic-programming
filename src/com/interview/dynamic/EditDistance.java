@@ -21,7 +21,7 @@ public class EditDistance {
      * Uses recursion to find minimum edits
      */
     public int recEditDistance(char[]  str1, char str2[], int len1,int len2){
-        
+
         if(len1 == str1.length){
             return str2.length - len2;
         }
@@ -30,33 +30,41 @@ public class EditDistance {
         }
         return min(recEditDistance(str1, str2, len1 + 1, len2 + 1) + str1[len1] == str2[len2] ? 0 : 1, recEditDistance(str1, str2, len1, len2 + 1) + 1, recEditDistance(str1, str2, len1 + 1, len2) + 1);
     }
-    
+
     /**
      * Uses bottom up DP to find the edit distance
      */
     public int dynamicEditDistance(char[] str1, char[] str2){
         int temp[][] = new int[str1.length+1][str2.length+1];
-        
+
+        // Requires i operations to convert null string to str1
         for(int i=0; i < temp[0].length; i++){
             temp[0][i] = i;
         }
-        
+
+        // Requires i operations to convert null string to str2
         for(int i=0; i < temp.length; i++){
             temp[i][0] = i;
         }
-        
+
         for(int i=1;i <=str1.length; i++){
             for(int j=1; j <= str2.length; j++){
                 if(str1[i-1] == str2[j-1]){
+                    // No change required, same as minimum number of changes till previous character
                     temp[i][j] = temp[i-1][j-1];
                 }else{
+                    // 1 - current character needs to change
+                    // min of
+                    //   upto previous chars in str1 and str2
+                    //   upto previous char in str1 and current char in str2
+                    //   upto current char in str1 and previous char in str2
                     temp[i][j] = 1 + min(temp[i-1][j-1], temp[i-1][j], temp[i][j-1]);
                 }
             }
         }
         printActualEdits(temp, str1, str2);
         return temp[str1.length][str2.length];
-        
+
     }
 
     /**
