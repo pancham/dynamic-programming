@@ -1,4 +1,4 @@
-package com.interview.graph;
+ package com.interview.graph;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +20,7 @@ public class CycleUndirectedGraph<T> {
 
     public boolean hasCycleUsingDisjointSets(Graph<T> graph){
         DisjointSet disjointSet = new DisjointSet();
-        
+
         for(Vertex<T> vertex : graph.getAllVertex()){
             disjointSet.makeSet(vertex.getId());
         }

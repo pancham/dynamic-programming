@@ -23,7 +23,9 @@ public class PalindromePartition {
             return 0;
         }
 
+        // only first part of diagonal (lower left) id being populated
         int[] cut = new int[str.length()];
+        // should isPal[0][0] be set to true?
         boolean isPal[][] = new boolean[str.length()][str.length()];
         for (int i = 1; i < str.length(); i++) {
             int min = i;

@@ -27,8 +27,12 @@ public class LongestPalindromicSubsequence {
                 if(l == 2 && str[i] == str[j]){
                     T[i][j] = 2;
                 }else if(str[i] == str[j]){
+                    // This is diagonally below cell. Since only top diagonl portion is being filled up,
+                    // this represents the characters excluding the first and last characters in substring.
                     T[i][j] = T[i + 1][j-1] + 2;
                 }else{
+                    // If characters do not match, then the largest subsequence is max of
+                    //      "l" characters including current character or "l" characters excluding current character
                     T[i][j] = Math.max(T[i + 1][j], T[i][j - 1]);
                 }
             }

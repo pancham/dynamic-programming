@@ -21,10 +21,10 @@ public class MaxSumForNonAdjacentElements {
      */
     public int maxSum(int arr[]) {
         // Holds max sum possible excluding previous element, this can be added to current element to find probable next
-        // maximum since previous elements is guaranteed to be not included. Note that this may have not included multiple
-        // previous elements
+        // maximum since previous elements is guaranteed to be not included. Note that this may have not been
+        // included in multiple previous elements
         int maxSumExcludingPrevious = 0;
-        int maxNonAdjacentSumSoFar = arr[0];
+        int maxNonAdjace ntSumSoFar = arr[0];
         for (int i = 1; i < arr.length; i++) {
             int temp = maxNonAdjacentSumSoFar;
             maxNonAdjacentSumSoFar = Math.max(maxSumExcludingPrevious + arr[i], maxNonAdjacentSumSoFar);

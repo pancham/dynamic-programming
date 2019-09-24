@@ -21,7 +21,6 @@ public class PrimMST {
      * Main method of Prim's algorithm.
      */
     public List<Edge<Integer>> primMST(Graph<Integer> graph){
-
         //binary heap + map data structure
         BinaryMinHeap<Vertex<Integer>> minHeap = new BinaryMinHeap<>();
 
@@ -55,10 +54,10 @@ public class PrimMST {
             }
 
             //iterate through all the adjacent vertices
-            for(Edge<Integer> edge : current.getEdges()){
+            for(Edge<Integer> edge : current.getEdges()) {
                 Vertex<Integer> adjacent = getVertexForEdge(current, edge);
                 //check if adjacent vertex exist in heap + map and weight attached with this vertex is greater than this edge weight
-                if(minHeap.containsData(adjacent) && minHeap.getWeight(adjacent) > edge.getWeight()){
+                if(minHeap.containsData(adjacent) && minHeap.getWeight(adjacent) > edge.getWeight()) {
                     //decrease the value of adjacent vertex to this edge weight.
                     minHeap.decrease(adjacent, edge.getWeight());
                     //add vertex->edge mapping in the graph.
@@ -106,6 +105,4 @@ public class PrimMST {
             System.out.println(edge);
         }
     }
-    
-    
 }
