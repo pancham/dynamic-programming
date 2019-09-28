@@ -81,7 +81,7 @@ public class SubRectangularMatrixWithMaximumSum {
         int maxSoFar = 0;
         for(int i=0; i < arr.length; i++){
             maxSoFar += arr[i];
-            if(maxSoFar < 0){
+            if(maxSoFar < 0){ //TODO: Why this check?
                 maxSoFar = 0;
                 currentStart = i+1;
             }

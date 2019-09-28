@@ -18,7 +18,7 @@ import java.util.Map;
  * Topdown DP - https://youtu.be/Kf_M7RdHr1M
  * Bottom up DP - https://youtu.be/Y0ZqKpToTic
  */
-public class CoinChangingMinimumCoin {
+public class  CoinChangingMinimumCoin {
 
     /**
      * Top down dynamic programing. Using map to store intermediate results.

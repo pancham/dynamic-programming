@@ -1,6 +1,8 @@
 package com.interview.dynamic;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Date 06/12/2014
@@ -25,9 +27,13 @@ public class MinJumpToReachEnd {
     public int minJump(int arr[],int result[]){
 
         int []jump = new int[arr.length];
+        int[] to = new int[arr.length];
+
         jump[0] = 0;
+        to[0] = -1;
         for(int i=1; i < arr.length ; i++){
             jump[i] = Integer.MAX_VALUE-1;
+            to[i] = -1;
         }
 
         for(int i=1; i < arr.length; i++){
@@ -39,10 +45,23 @@ public class MinJumpToReachEnd {
                     if(jump[i] > jump[j] + 1){  // +1 is one additional jumo from j to reach i
                         result[i] = j;
                         jump[i] = jump[j] + 1;
+                        to[i] = j;
                     }
                 }
             }
         }
+
+        ArrayList<Integer> path = new ArrayList<Integer>();
+        for (int i = to.length - 1; i >=0;) {
+            path.add(to[i]);
+
+            i = to[i];
+
+            if (to[i] == -1)
+                break;
+        }
+        Collections.reverse(path);
+        System.out.println(Arrays.toString(path.toArray()));
 
         return jump[jump.length-1];
     }

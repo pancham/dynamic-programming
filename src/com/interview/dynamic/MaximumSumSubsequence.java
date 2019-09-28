@@ -1,5 +1,9 @@
 package com.interview.dynamic;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * Problem Statement:
  *
@@ -17,9 +21,11 @@ public class MaximumSumSubsequence {
     public int maxSum(int arr[]){
         // This array maintains max increasing sum till ith postition
         int T[] = new int[arr.length];
+        int S[] = new int[arr.length];
 
         for (int i = 0; i < T.length; i++) {
             T[i] = arr[i];
+            S[i] = -1;
         }
 
         for(int i=1; i < T.length; i++){
@@ -28,17 +34,35 @@ public class MaximumSumSubsequence {
                 // So - look the sum may also form an increasing sum subsequence, hence take max of t[i] and
                 // max till j - t[j] + value at i
                 if(arr[j] < arr[i]){
-                    T[i] = Math.max(T[i], T[j] + arr[i]);
+                    if (T[j] + arr[i] > T[i]) {
+                        T[i] = T[j] + arr[i];
+                        S[i] = j;
+                    }
                 }
             }
         }
 
         int max = T[0];
+        int maxIndex = -1;
         for (int i=1; i < T.length; i++){
             if(T[i] > max){
                 max = T[i];
+                maxIndex = i;
             }
         }
+
+        ArrayList<Integer> path = new ArrayList<Integer>();
+        for (int i = maxIndex; i >=0;) {
+            path.add(arr[i]);
+
+            i = S[i];
+
+//            if (S[i] == -1)
+//                break;
+        }
+        Collections.reverse(path);
+        System.out.println(Arrays.toString(path.toArray()));
+
         return max;
     }
 

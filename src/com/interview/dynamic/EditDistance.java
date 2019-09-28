@@ -91,7 +91,7 @@ public class EditDistance {
                 System.out.println("Delete in string2 " + str2[j-1]);
                 j = j -1;
             } else {
-                throw new IllegalArgumentException("Some wrong with given data");
+                throw new IllegalArgumentException("Some wrong with given data ");
             }
 
         }
@@ -105,6 +105,7 @@ public class EditDistance {
     public static void main(String args[]){
         String str1 = "azced";
         String str2 = "abcdef";
+        System.out.println("start2");
         EditDistance editDistance = new EditDistance();
         int result = editDistance.dynamicEditDistance(str1.toCharArray(), str2.toCharArray());
         System.out.print(result);

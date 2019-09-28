@@ -38,12 +38,10 @@ public class LongestCommonSubsequence {
         }
 
         int i = str1.length, j = str2.length;
-        bool c = true;
-
         StringBuffer buf = new StringBuffer();
-        while(c) {
-            if (temp[i][j] == temp[i = 1][j - 1]] + 1) {
-                buf.append(str[i - 1]);
+        do {
+            if (temp[i][j] == temp[i - 1][j - 1] + 1) {
+                buf.append(str1[i - 1]);
                 i += -1;
                 j += -1;
             } else if (temp[i][j - 1] > temp[i - 1][j]) {
@@ -52,10 +50,9 @@ public class LongestCommonSubsequence {
                 i += -1;
             }
 
-            if (i == 0 || j == 0) {
-                c = false;
-            }
-        }
+        } while(i > 0 && j > 0 );
+
+        System.out.println(String.format("Longest common subsequence: %s", buf.reverse().toString()));
 
         return max;
     
@@ -67,7 +64,7 @@ public class LongestCommonSubsequence {
         String str2 = "AEDPHR";
         
         int result = lcs.lcsDynamic(str1.toCharArray(), str2.toCharArray());
-        System.out.print(result);
+        System.out.println(result);
     }
     
     

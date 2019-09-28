@@ -1,4 +1,9 @@
 package com.interview.dynamic;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /*
  * Date 09/23/2014
  * @author Tushar Roy
@@ -24,12 +29,35 @@ public class SubsetSum {
         for (int i = 1; i <= input.length; i++) {
             for (int j = 1; j <= total; j++) {
                 if (j - input[i - 1] >= 0) {
+                    // If total "j" can be made with i - 1 coins
+                    // OR
+                    // if total of (j - input[i - 1]) coins can be formed using 1 less coin at input[i - 1] (discounting current one)
                     T[i][j] = T[i - 1][j] || T[i - 1][j - input[i - 1]];
                 } else {
+                    // If total "j" can be made with i - 1 coins
                     T[i][j] = T[i-1][j];
                 }
             }
         }
+
+        List<Integer> subset = new ArrayList<Integer>();
+
+        int i = input.length, j = total;
+
+        do  {
+             if ((j - input[i - 1]) >= 0 && T[i][j] && T[i - 1][j - input[i - 1]]) {
+                subset.add(input[i - 1]);
+
+                j -= input[i - 1];
+                 i -= 1;
+            } else if (T[i][j] == T[i - 1][j]) {
+                 i -= 1;
+//                 j -= 1;
+             }
+        } while(i > 0 && j > 0);
+
+        System.out.printf("Subset %s", Arrays.toString(subset.toArray()));
+
         return T[input.length][total];
 
     }
@@ -65,9 +93,9 @@ public class SubsetSum {
     public static void main(String args[]) {
         SubsetSum ss = new SubsetSum();
         int arr[] = {1, 3, 5, 5, 2, 1, 1, 6};
-        System.out.println(ss.partition(arr));
+//        System.out.println(ss.partition(arr));
 
-        int arr1[] = {2, 3, 7, 8};
+        int arr1[] = {2, 3, 7, 8};// {1, 3, 5, 5, 2, 1, 1, 6};
         System.out.print(ss.subsetSum(arr1, 11));
 
     }

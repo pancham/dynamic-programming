@@ -1,6 +1,8 @@
 package com.interview.dynamic;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Date 05/09/2015
@@ -57,6 +59,16 @@ public class BoxStacking {
                 }
             }
         }
+
+        ArrayList<Dimension> boxes = new ArrayList<Dimension>();
+        for(int i = result.length - 1; i >=0;) {
+            boxes.add(allRotationInput[i]);
+            if (i == 0) break;
+            i = result[i];
+        }
+
+        Collections.reverse(boxes);
+        System.out.println(Arrays.toString(boxes.toArray()));
        
         //find max in T[] and that will be our max height.
         //Result can also be found using result[] array.

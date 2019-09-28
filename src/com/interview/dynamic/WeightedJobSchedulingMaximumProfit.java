@@ -12,6 +12,10 @@ class Job{
         this.end = end;
         this.profit= profit;
     }
+
+    public String toString() {
+        return "(start: " + start + ", end: " + end + ", profit: " + profit + ")";
+    }
 }
 
 class FinishTimeComparator implements Comparator<Job>{
@@ -44,26 +48,53 @@ public class WeightedJobSchedulingMaximumProfit {
      */
     public int maximum(Job[] jobs){
         int T[] = new int[jobs.length];
+        int C[] = new int[jobs.length];
+
+        for (int i = 0;  i < jobs.length; i++) {
+            C[i] = -1;
+        }
+
         FinishTimeComparator comparator = new FinishTimeComparator();
         Arrays.sort(jobs, comparator);
 
         T[0] = jobs[0].profit;
         for(int i=1; i < jobs.length; i++){
             T[i] = Math.max(jobs[i].profit, T[i-1]); // Profit by not starting the job
+//            C[i] = i - 1;
             for(int j=i-1; j >=0; j--){
 
                 // Note equality - if finish and start times match - we do not consider them to be overlapping
                 if(jobs[j].end <= jobs[i].start){
-                    T[i] = Math.max(T[i], jobs[i].profit + T[j]);
+//                    T[i] = Math.max(T[i], jobs[i].profit + T[j]);
+                    if (jobs[i].profit + T[j] > T[i]) {
+                        T[i] = jobs[i].profit + T[j];
+                        C[i] = j;
+                    }
                     break;
                 }
             }
         }
+
         int maxVal = Integer.MIN_VALUE;
-        for (int val : T) {
-            if (maxVal < val) {
-                maxVal = val;
+        int maxIndex = -1;
+        for (int i = 0; i < T.length; i++) {
+            if (maxVal < T[i]) {
+                maxVal = T[i];
+                maxIndex = i;
             }
+        }
+
+        for (int i = maxIndex; i >= 0;) {
+            if (T[i] == T[i] -1) {
+                i -= 1;
+                continue;
+            }
+
+            if (i == -1) {
+                break;
+            }
+            System.out.println(jobs[i]);
+            i = C[i];
         }
         return maxVal;
     }

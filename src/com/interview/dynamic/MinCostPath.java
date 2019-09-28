@@ -1,9 +1,28 @@
 package com.interview.dynamic;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 /**
  * http://www.geeksforgeeks.org/dynamic-programming-set-6-min-cost-path/
  */
-public class MinCostPath {
+public class  MinCostPath {
+
+    class Cell {
+        int x;
+        int y;
+
+        public Cell(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public String toString() {
+            return " (" + x + "," + y + ")";
+        }
+    }
 
     public int minCost(int [][]cost,int m,int n){
         
@@ -24,6 +43,29 @@ public class MinCostPath {
                 temp[i][j] = cost[i][j] + min(temp[i-1][j-1], temp[i-1][j],temp[i][j-1]);
             }
         }
+
+        // Traverse path
+        ArrayList<Cell> path = new ArrayList<Cell>();
+
+        int i = m, j = n;
+        path.add(new Cell(i,j));
+        do {
+            if (temp[i][j] == cost[i][j] + temp[i-1][j-1]) {
+                path.add(new Cell(i-1, j-1));
+                i -= 1;
+                j -= 1;
+            } else if (temp[i][j] == cost[i][j] + temp[i-1][j]) {
+                path.add(new Cell(i-1, j));
+                i -= 1;
+            } else if (temp[i][j] == cost[i][j] + temp[i][j-1]) {
+                path.add(new Cell(i, j-1));
+                j -= 1;
+            }
+
+        } while(i > 0 && j > 0);
+
+        Collections.reverse(path);
+        System.out.println(Arrays.toString(path.toArray()));
         return temp[m][n];
     }
     
@@ -55,9 +97,9 @@ public class MinCostPath {
         MinCostPath mcp = new MinCostPath();
         int cost[][] = {{1,2,3},{4,8,2},{1,5,3},{6,2,9}};
         int result = mcp.minCost(cost, 3, 2);
-        int result1 = mcp.minCostRec(cost, 3, 2);
+//        int result1 = mcp.minCostRec(cost, 3, 2);
         System.out.println(result);
-        System.out.println(result1);
+//        System.out.println(result1);
     }
 
 }

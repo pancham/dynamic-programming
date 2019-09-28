@@ -1,7 +1,6 @@
 package com.interview.dynamic;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Date 04/04/2014
@@ -50,6 +49,24 @@ public class Knapsack01 {
                 }
             }
         }
+
+        ArrayList<Integer> items = new ArrayList<Integer>();
+        int i = val.length, j = W;
+
+        do {
+            if (K[i][j] == K[i-1][j]) {
+                i -= 1;
+            } else if ((j - wt[i - 1] > 0) && K[i][j] == K[i-1][j-wt[i-1]] + val[i-1]) {
+                items.add(i-1);
+                j -= wt[i-1];
+                i -= 1;
+            }
+
+        } while (i > 0 && j > 0);
+
+        Collections.reverse(items);
+        System.out.println(Arrays.toString(items.toArray()));
+
         return K[val.length][W];
     }
 
@@ -125,8 +142,8 @@ public class Knapsack01 {
         int val[] = {22, 20, 15, 30, 24, 54, 21, 32, 18, 25};
         int wt[] = {4, 2, 3, 5, 5, 6, 9, 7, 8, 10};
         int r = k.bottomUpDP(val, wt, 30);
-        int r1 = k.topDownRecursive(val, wt, 30);
+//        int r1 = k.topDownRecursive(val, wt, 30);
         System.out.println(r);
-        System.out.println(r1);
+//        System.out.println(r1);
     }
 }

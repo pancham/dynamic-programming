@@ -72,6 +72,8 @@ public class SubsquareSurrounedByXs {
         //If this is greater than 1 then see if you can find a number between this min and 1
         //such that on left's ver and top's hori is greater greater than or equal to k.
         int max = 1;
+        int maxX = -1;
+        int maxY = -1;
         for(int i=T.length -1; i >=0 ; i--){
             for(int j= T[0].length-1 ; j >=0; j--){
                 if(T[i][j].ver == 0 || T[i][j].ver == 1 || T[i][j].hori ==1 ){
@@ -86,10 +88,13 @@ public class SubsquareSurrounedByXs {
                 }
                 if(max < k){
                     max = k;
+                    maxX = i;
+                    maxY = j;
                 }
             }
         }
-        
+
+        System.out.printf("%d %d %d %d %n", maxX - max + 1, maxY - max + 1, maxX, maxY);
         return max;
     }
     

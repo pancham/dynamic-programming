@@ -13,12 +13,14 @@ public class MaximumSizeSubMatrix {
     public int maxSize(int arr[][]){
         
         int result[][] = new int[arr.length][arr[0].length];
-        int max = 0;
+        int max = 0, maxX = 0, maxY = 0;
         for(int i=0; i < arr.length; i++){
             result[i][0] = arr[i][0];
             if (result[i][0] == 1)
             {
                 max = 1;
+                maxX = i;
+                maxY = 0;
             }
         }
         
@@ -27,6 +29,8 @@ public class MaximumSizeSubMatrix {
             if (result[0][i] == 1)
             {
                 max = 1;
+                maxX = 0;
+                maxY = i;
             }
             
         }
@@ -41,9 +45,13 @@ public class MaximumSizeSubMatrix {
                 result[i][j] =  t +1;
                 if(result[i][j] > max){
                     max = result[i][j];
+                    maxX = i;
+                    maxY = j;
                 }
             }
         }
+
+        System.out.printf("%d %d %d %d %n", maxX - max + 1, maxY - max + 1, maxX, maxY);
         return max;
     }
     

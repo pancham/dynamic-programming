@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="dynamic-programming.main" target="1.8" />
       <module name="dynamic-programming.test" target="1.8" />
+      <module name="interview.main" target="1.8" />
+      <module name="interview.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
