@@ -48,31 +48,6 @@ class DiceThrow {
         return table[n][x];
     }
 
-    public static void printDiceCombinations2(long[][] table, int startX, int startY) {
-
-
-        if (startX == 0 || startY == 0) {
-            System.out.println();
-            return;
-        }
-//        System.out.printf("%d ", table[startX][startY]);
-        for (int j = startY - 1; j > 0; j--) {
-            int x = startX;
-            int y = j;
-
-            System.out.printf("%d ", startY - j);
-            do {
-                if (x == 1 || y == 1) {
-                    System.out.println(y);
-                    x = 0;
-                }
-                x -= 1;
-                y -= j;
-            } while (x >= 1 && y >= 1);
-//            printDiceCombinations(table, startX - 1, startY - j);
-        }
-    }
-
     public static void printDiceCombinations(long[][] table, int m, int startX, int startY, int parent) {
 
         if (table[startX][startY] == 0) {
