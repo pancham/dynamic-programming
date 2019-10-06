@@ -32,7 +32,6 @@ public class MaxSumForNonAdjacentElements {
         int[] col1 = new int[arr.length];
         int[] col2 = new int[arr.length];
 
-        items[0] = -1;
         col1[0] = arr[0];
         col2[0] = -1;
         boolean isNextCol1 = false;
@@ -51,7 +50,7 @@ public class MaxSumForNonAdjacentElements {
                     } else {
                         copy(col1, col2);
                     }
-                } 
+                }
 
                 if (isNextCol1) {
                     col1[i] = arr[i];
@@ -153,9 +152,9 @@ public class MaxSumForNonAdjacentElements {
 //        int arr[] = { 2, 1, 13, 4, 2, 15, 10 };
 //        int arr[] = { 2, 1, 2, 4, 2, 15, 10 };
 //        int arr[] = { 2, 1, 2, 4, 2, 0, 10 };
-        int arr[] = { 2, 1, 2, 4, 2, 0, 10, 12, 9, 13 };
+//        int arr[] = { 2, 1, 2, 4, 2, 0, 10, 12, 9, 13 };
 //        int arr[] = { 10, 12, 9, 13, 10};
-//        int arr[] = { 2, 1, 2, 4, 2, 0, 10, 12, 9, 13, 5, 6, 19, 40 };
+        int arr[] = { 2, 1, 2, 4, 2, 0, 10, 12, 9, 13, 5, 6, 19, 40 };
         System.out.println(msn.maxSum(arr));
 //        System.out.println(msn.maxSum(arr, arr.length-1));
 

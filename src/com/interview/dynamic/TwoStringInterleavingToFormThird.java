@@ -33,13 +33,13 @@ public class TwoStringInterleavingToFormThird {
                 if(i == 0 && j == 0){
                     T[i][j] = true;
                 }
-                else if(i == 0){
+                else if(i == 0){ // str1 is empty
                     if(str3[l] == str2[j-1]){
                         // If current character matches str3, the result is same as if previous part is interleaving
                         T[i][j] = T[i][j-1];
                     }
                 }
-                else if(j == 0){
+                else if(j == 0){ // str2 is empty
                     if(str1[i-1] == str3[l]){
                         // If current character matches str3, the result is same as if previous part is interleaving
                         T[i][j] = T[i-1][j];
@@ -52,16 +52,16 @@ public class TwoStringInterleavingToFormThird {
                     // str2[j-1] == str3[l] ? T[i][j-1] : false =>
                     //      Since str2's (j - 1)th characte is present in str3, check if str3 is still interleaving with one less character in str1
 
-                    T[i][j] = (str1[i-1] == str3[l] ? T[i-1][j] : false) || (str2[j-1] == str3[l] ? T[i][j-1] : false);
+//                    T[i][j] = (str1[i-1] == str3[l] ? T[i-1][j] : false) || (str2[j-1] == str3[l] ? T[i][j-1] : false);
 
                     // Above can also be written as (easier to read):
-//                    if (str1[i-1] == str3[l]) {
-//                        T[i][j] = T[i-1][j];
-//                    } else if (str2[j-1] == str3[l]) {
-//                        T[i][j] = T[i][j-1];
-//                    } else {
-//                        T[i][j] = false;
-//                    }
+                    if (str1[i-1] == str3[l]) {
+                        T[i][j] = T[i-1][j];
+                    } else if (str2[j-1] == str3[l]) {
+                        T[i][j] = T[i][j-1];
+                    } else {
+                        T[i][j] = false;
+                    }
 
                 }
             }
@@ -70,9 +70,14 @@ public class TwoStringInterleavingToFormThird {
     }
 
     public static void main(String args[]){
-        String str1 = "XXYM";
-        String str2 = "XXZT";
-        String str3 = "XXXZXYTM";
+//        String str1 = "XXYM";
+//        String str2 = "XXZT";
+//        String str3 = "XXXZXYTM";
+        String str1 = "aab";
+        String str2 = "axy";
+//        String str3 = "aaxaby"; // true
+        String str3 = "abaaxy"; // false
+
         TwoStringInterleavingToFormThird sti = new TwoStringInterleavingToFormThird();
         System.out.println(sti.isInterleaved(str1.toCharArray(), str2.toCharArray(), str3.toCharArray()));
     }

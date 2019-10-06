@@ -7,11 +7,24 @@ public class CuttingRod {
 
     public int maxValue(int price[]){
         int max[] = new int[price.length+1];
+        int sizes[] = new int[price.length + 1];
         for(int i=1; i <= price.length; i++){
             for(int j=i; j <= price.length; j++){
-                max[j] = Math.max(max[j], max[j-i] + price[i-1]);
+                if (max[j] < max[j-i] + price[i-1]) {
+                    max[j] = max[j-i] + price[i-1];
+                    sizes[j] = i;
+                }
             }
         }
+
+        System.out.println("Cut sizes: ");
+        int j = price.length;
+        do {
+//            if (sizes[j] == 0) break;
+            System.out.printf("%d ", sizes[j]);
+            j -= sizes[j];
+        } while (j > 0);
+        System.out.println();
         return max[price.length];
     }
     
@@ -44,10 +57,8 @@ public class CuttingRod {
     public static void main(String args[]){
         CuttingRod cr =new CuttingRod();
         int[] price = {3,5,8,9,10,20,22,25};
-        long t1 = System.currentTimeMillis();
-        int r = cr.recursiveMaxValue(price,8);
-        long t2 = System.currentTimeMillis();
+//        int[] price = {3,5,8,9,30,20,22,25};
+        int r = cr.maxValue(price);
         System.out.println(r);
-        System.out.println(t2 - t1);
     }
 }

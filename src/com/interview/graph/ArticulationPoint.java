@@ -55,7 +55,7 @@ public class ArticulationPoint<T> {
             Map<Vertex<T>, Integer> lowTime, Map<Vertex<T>, Vertex<T>> parent) {
         visited.add(vertex);
         visitedTime.put(vertex, time);
-        lowTime.put(vertex, time);
+         .put(vertex, time);
         time++;
         int childCount =0;
         boolean isArticulationPoint = false;

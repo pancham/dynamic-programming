@@ -25,7 +25,7 @@ public class SubsetSum {
         for (int i = 0; i <= input.length; i++) {
             T[i][0] = true;
         }
-
+//        Trace complete path of a journey
         for (int i = 1; i <= input.length; i++) {
             for (int j = 1; j <= total; j++) {
                 if (j - input[i - 1] >= 0) {
@@ -62,6 +62,75 @@ public class SubsetSum {
 
     }
 
+    /**
+     * Given a set of m distinct positive integers and a value ‘N’. The problem is to count the total number of ways we
+     * can form ‘N’ by doing sum of the array elements. Repetitions and different arrangements are allowed.
+     * @param input
+     * @param total
+     * @return
+     */
+    public int subsetSumWithRepetitions(int[] input, int total)
+    {
+        int count[] = new int[total + 1];
+        ArrayList<ArrayList<Integer>> data = new ArrayList<ArrayList<Integer>>(total);
+
+        // base case
+        count[0] = 1;
+
+        // {1, 5, 6}
+        // count ways for all values up
+        // to 'N' and store the result
+        for (int i = 1; i <= total; i++) {
+            data.add(new ArrayList<Integer>());
+            for (int j = 0; j < input.length; j++) {
+
+                // if i >= arr[j] then
+                // accumulate count for value 'i' as
+                // ways to form value 'i-arr[j]'
+                if (i >= input[j]) {
+                    count[i] += count[i - input[j]];
+//                    data.get(i-1).add(input[j]);
+                }
+            }
+        }
+
+        print(count, input, total, new ArrayList<Integer>());
+//        System.out.println("Picked numbers:");
+//        int i = data.length - 1;
+//        do {
+//            System.out.printf("%d ", data[i]);
+//            i -= data[i];
+//        } while (i > 0);
+//        System.out.println();
+
+        // required number of ways
+        return count[total];
+
+    }
+
+    private int printCounter = 0;
+    void print(int[] count, int[] input, int pos, ArrayList<Integer> parents) {
+//        do {
+            if (count[pos] == 0 || pos <= 0) {
+                System.out.println(Arrays.toString(parents.toArray()));
+                System.out.printf("Print counter: %d %n", ++printCounter);
+                return;
+            }
+
+            for(int j = 0; j < input.length; j++) {
+                if (pos >= input[j]) {
+//                    System.out.printf("%d ", input[j]);
+                    parents.add(input[j]);
+                    print(count, input, pos - input[j], parents);
+                    if (parents.size() > 0) {
+                        parents.remove(parents.size() - 1);
+                    }
+                }
+            }
+
+//        } while (true);
+    }
+
     public boolean partition(int arr[]) {
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
@@ -95,8 +164,13 @@ public class SubsetSum {
         int arr[] = {1, 3, 5, 5, 2, 1, 1, 6};
 //        System.out.println(ss.partition(arr));
 
-        int arr1[] = {2, 3, 7, 8};// {1, 3, 5, 5, 2, 1, 1, 6};
-        System.out.print(ss.subsetSum(arr1, 11));
+//        int arr1[] = {1, 5, 6};
+//        int arr1[] = {2, 3, 7, 8};
+//        int arr1[] = {1, 3, 5, 5, 2, 1, 1, 6};
+        int arr1[] = {1, 3, 5, 2, 6};
+//        System.out.println(ss.subsetSum(arr1, 11));
+        System.out.println();
+        System.out.println(ss.subsetSumWithRepetitions(arr1, 11));
 
     }
 }

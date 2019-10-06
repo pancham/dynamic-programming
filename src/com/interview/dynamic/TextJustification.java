@@ -60,13 +60,14 @@ public class TextJustification {
         //minCost from i to len is found by trying
         //j between i to len and checking which
         //one has min value
-        int minCost[] = new int[words.length];
-        int result[] = new int[words.length];
+        int minCost[] = new int[words.length];  // stores min cost
+        int result[] = new int[words.length];   // stores (split point - 1), next line starts from (split point)
         for(int i = words.length-1; i >= 0 ; i--){
             minCost[i] = cost[i][words.length-1];
             result[i] = words.length;
-            for(int j=words.length-1; j > i; j--){
-                if(cost[i][j-1] == Integer.MAX_VALUE){
+            for(int j=words.length-1; j > i; j--) {
+                // Note (j - 1) since the cost of (j to last word) has already been computed in minCost and result
+                if(cost[i][j-1] == Integer.MAX_VALUE) {
                     continue;
                 }
                 if(minCost[i] > minCost[j] + cost[i][j-1]){

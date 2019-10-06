@@ -41,7 +41,7 @@ public class MinJumpToReachEnd {
                 // we are already at position j.
                 // To reach i, we need to add (number of jumps possible from j) to j and if it equals or
                 // exceeds i - then we can i from j
-                if(arr[j] + j >= i){
+                if(j +  arr[j] >= i){
                     if(jump[i] > jump[j] + 1){  // +1 is one additional jumo from j to reach i
                         result[i] = j;
                         jump[i] = jump[j] + 1;

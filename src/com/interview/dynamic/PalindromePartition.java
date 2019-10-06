@@ -25,11 +25,13 @@ public class PalindromePartition {
 
         // only first part of diagonal (lower left) id being populated
         int[] cut = new int[str.length()];
-        // should isPal[0][0] be set to true?
+        // TODO: should isPal[0][0] be set to true?
         boolean isPal[][] = new boolean[str.length()][str.length()];
         for (int i = 1; i < str.length(); i++) {
             int min = i;
             for (int j = 0; j <= i; j++) {
+                // isPal[i - 1][j + 1]) - This is the element diagonally up
+                //
                 if (str.charAt(i) == str.charAt(j) && (i <= j + 1 || isPal[i - 1][j + 1])) {
                     isPal[i][j] = true;
                     min = Math.min(min, j == 0 ? 0 : 1 + cut[j - 1]);

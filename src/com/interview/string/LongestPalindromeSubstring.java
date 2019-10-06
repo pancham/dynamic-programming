@@ -145,6 +145,7 @@ public class LongestPalindromeSubstring {
                         len = 2;
                     }
                 }else{
+
                     if(str[i] == str[j] && T[i+1][j-1]){
                         T[i][j] = true;
                         len = j -i + 1;
