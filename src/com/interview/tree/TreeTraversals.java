@@ -8,10 +8,11 @@ import java.util.LinkedList;
  * Youtube link - https://youtu.be/elQcrJrfObg
  * Youtube link - https://youtu.be/qT65HltK2uE
  * Youtube link - https://youtu.be/ZM-sV9zQPEs
- * 
+ *
  * http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/
  * http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
  * http://www.geeksforgeeks.org/iterative-preorder-traversal/
+ *
  */
 public class TreeTraversals {
 
@@ -23,7 +24,7 @@ public class TreeTraversals {
         System.out.print(root.data + " ");
         inOrder(root.right);
     }
-    
+
     public void preOrder(Node root){
         if(root == null){
             return;
@@ -32,7 +33,7 @@ public class TreeTraversals {
         preOrder(root.left);
         preOrder(root.right);
     }
-    
+
     public void postOrder(Node root){
         if(root == null){
             return;
@@ -60,7 +61,7 @@ public class TreeTraversals {
             }
         }
     }
-    
+
     public void preOrderItr(Node root){
         Deque<Node> stack = new LinkedList<Node>();
         stack.addFirst(root);
@@ -75,7 +76,7 @@ public class TreeTraversals {
             }
         }
     }
-    
+
     public void postOrderItr(Node root){
         Deque<Node> stack1 = new LinkedList<Node>();
         Deque<Node> stack2 = new LinkedList<Node>();
@@ -94,7 +95,7 @@ public class TreeTraversals {
             System.out.print(stack2.pollFirst().data + " ");
         }
     }
-    
+
     public void postOrderItrOneStack(Node root){
         Node current = root;
         Deque<Node> stack = new LinkedList<>();
@@ -117,7 +118,7 @@ public class TreeTraversals {
             }
         }
     }
-    
+
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
         Node head = null;

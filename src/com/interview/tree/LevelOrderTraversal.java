@@ -5,8 +5,8 @@ import java.util.Queue;
 
 /**
  * Youtube link - https://youtu.be/9PHkM0Jri_4
- * 
- * http://www.geeksforgeeks.org/level-order-tree-traversal/ 
+ *
+ * http://www.geeksforgeeks.org/level-order-tree-traversal/
  * Test cases
  * Empty tree
  * Tree with only left side
@@ -14,6 +14,7 @@ import java.util.Queue;
  * Mixed size tree
  * Full tree
  * complete tree
+ *
  */
 public class LevelOrderTraversal {
 

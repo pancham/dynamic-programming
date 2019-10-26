@@ -6,6 +6,21 @@ package com.interview.tree;
  * Empty tree
  * One node tree
  * Two node tree
+ * Given a Binary Search Tree (BST), modify it so that all greater values in the given BST are added to every node.
+ * For example, consider the following BST.
+ *               50
+ *            /      \
+ *          30        70
+ *         /   \      /  \
+ *       20    40    60   80
+ *
+ * The above tree should be modified to following
+ *
+ *               260
+ *            /      \
+ *          330        150
+ *         /   \       /  \
+ *       350   300    210   80
  */
 
 class IntegerRef{
@@ -23,7 +38,7 @@ public class AddGreaterValueNodeToEveryNode {
         ref.val = root.data;
         add(root.left,ref);
     }
-    
+
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
         Node root = null;

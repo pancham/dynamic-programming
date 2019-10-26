@@ -1,12 +1,13 @@
 package com.interview.tree;
 
 /**
- * Date 07/07/2014 
+ * Date 07/07/2014
  * @author tusroy
- * 
+ *
  * Youtube link - https://youtu.be/bmaeYtlO2OE
  * Youtube link - https://youtu.be/_SiwrPXG9-g
  * Youtube link - https://youtu.be/NA8B84DZYSA
+ *
  *
  */
 class NodeRef{
@@ -27,7 +28,7 @@ class Node{
     int height;
     int size;
     Color color;
-    
+
     public static Node newNode(int data){
         Node n = new Node();
         n.left = null;
@@ -42,8 +43,10 @@ class Node{
 }
 
 public class BinaryTree {
+    Node root;
     public Node addNode(int data, Node head){
-        Node tempHead = head;
+        root = head;
+
         Node n = Node.newNode(data);
         if(head == null){
             head = n;
@@ -63,13 +66,13 @@ public class BinaryTree {
         }else{
             prev.left = n;
         }
-        return tempHead;
+        return root;
     }
-    
+
     class IntegerRef{
         int height;
     }
-    
+
     public int height(Node root){
         if(root == null){
             return 0;
@@ -78,7 +81,7 @@ public class BinaryTree {
         int rightHeight = height(root.right);
         return Math.max(leftHeight, rightHeight) + 1;
     }
-    
+
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
         Node head = null;
@@ -91,6 +94,6 @@ public class BinaryTree {
         head = bt.addNode(-1, head);
         head = bt.addNode(21, head);
         System.out.println(bt.height(head));
-        
+
     }
 }

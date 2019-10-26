@@ -3,19 +3,20 @@ package com.interview.tree;
 /**
  * Date 03/05/2015
  * @author tusroy
- * 
+ *
  * Given a root of binary tree, return size of binar tree
- * 
+ *
  * Solution:
  * Recursively find size of left side, right side and add one to them and return that to calling function.
- * 
+ *
  * Time complexity - O(n)
  * Space complexity(because of recursion stack) - height of binary tree. Worst case O(n)
- * 
+ *
  * Test cases:
  * Null tree
  * 1 node tree
  * multi node tree
+ *
  */
 public class SizeOfBinaryTree {
 
@@ -25,7 +26,7 @@ public class SizeOfBinaryTree {
         }
         return size(root.left) + size(root.right) + 1;
     }
-    
+
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
         Node head = null;

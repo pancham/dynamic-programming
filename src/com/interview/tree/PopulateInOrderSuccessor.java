@@ -2,6 +2,7 @@ package com.interview.tree;
 
 /**
  * http://www.geeksforgeeks.org/populate-inorder-successor-for-all-nodes/
+ *
  */
 public class PopulateInOrderSuccessor {
 
@@ -14,12 +15,12 @@ public class PopulateInOrderSuccessor {
         nodeRef.node = root;
         populate(root.left,nodeRef);
     }
-    
+
     public void populate(Node root){
         NodeRef nodeRef = new NodeRef();
         populate(root,nodeRef);
     }
-    
+
     public void print(Node root){
         if(root == null){
             return;
@@ -27,7 +28,7 @@ public class PopulateInOrderSuccessor {
         System.out.println(root.data);
         print(root.next);
     }
-    
+
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
         Node head = null;

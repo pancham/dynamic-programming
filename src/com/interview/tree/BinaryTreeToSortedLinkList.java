@@ -4,6 +4,11 @@ package com.interview.tree;
  * http://www.careercup.com/question?id=6241652616200192
  * Test cases:
  * 0,1 or more nodes in the tree
+ *
+ * Given a Binary Tree (balanced or not) write a method that transforms the tree in a degenerate tree
+ * (basically a data structure like a sorted linked list where each node has the left child null)
+ * and returns the new root.
+ *  * This must be made in place, no external memory usage is allowed.
  */
 public class BinaryTreeToSortedLinkList {
 
@@ -11,16 +16,16 @@ public class BinaryTreeToSortedLinkList {
         if(root == null){
             return null;
         }
-        
+
         Node left = toSortedLinkList(root.left);
         Node right = toSortedLinkList(root.right);
-        
+
         root.left = null;
         root.right = null;
         root = merge(left,root);
         return merge(root,right);
     }
-    
+
     private Node merge(Node head1,Node head2){
         if(head1 == null){
             return head2;
@@ -36,14 +41,14 @@ public class BinaryTreeToSortedLinkList {
             return head2;
         }
     }
-    
+
     private void print(Node root){
         while(root != null){
             System.out.print(root.data + " ");
             root = root.next;
         }
     }
-    
+
     public static void main(String args[]){
         int in[] = {-6,0,15,10,3,25,2};
         int pre[] = {10,15,-6,0,25,3,2};

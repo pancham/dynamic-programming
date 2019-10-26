@@ -8,6 +8,16 @@ class Index{
  * Test case
  * empty array
  * 1,2 or more elements in the array
+ *
+ * Given preorder traversal of a binary search tree, construct the BST.
+ *
+ * For example, if the given traversal is {10, 5, 1, 7, 40, 50}, then the output should
+ * be root of following tree.
+ *      10
+ *    /   \
+ *   5     40
+ *  /  \      \
+ * 1    7      50
  */
 public class ConstructBSTFromPreOrderArray {
 
@@ -15,12 +25,12 @@ public class ConstructBSTFromPreOrderArray {
         Index index = new Index();
         return toBST(preorder,Integer.MIN_VALUE,Integer.MAX_VALUE,index);
     }
-    
+
     //stack based version
     public Node toBSTIterative(int preorder[]){
         return null;
     }
-    
+
     private Node toBST(int preorder[],int min, int max,Index index){
         if(index.index >= preorder.length){
             return null;
@@ -28,7 +38,7 @@ public class ConstructBSTFromPreOrderArray {
         if(preorder[index.index] < min || preorder[index.index] >= max){
             return null;
         }
-        
+
         Node node = new Node();
         node.data = preorder[index.index];
         index.index++;
@@ -36,7 +46,7 @@ public class ConstructBSTFromPreOrderArray {
         node.right = toBST(preorder,node.data,max,index);
         return node;
     }
-    
+
     public static void main(String args[]){
         int preorder[] = {10,5,1,7,40,50};
         ConstructBSTFromPreOrderArray poa = new ConstructBSTFromPreOrderArray();

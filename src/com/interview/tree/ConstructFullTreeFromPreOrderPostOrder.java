@@ -11,11 +11,11 @@ package com.interview.tree;
 public class ConstructFullTreeFromPreOrderPostOrder {
 
     public Node constructTree(int preorder[],int postorder[]){
-    
+
         return constructTree(preorder, postorder, 0, postorder.length-2, 0);
-        
+
     }
-    
+
     private Node constructTree(int preorder[],int postorder[],int low,int high,int index){
 
         if(low > high || index >= preorder.length-1){
@@ -23,7 +23,7 @@ public class ConstructFullTreeFromPreOrderPostOrder {
             node.data = preorder[index];
             return node;
         }
-        
+
         Node node = new Node();
         node.data = preorder[index];
         int i=0;
@@ -36,7 +36,7 @@ public class ConstructFullTreeFromPreOrderPostOrder {
         node.right = constructTree(preorder, postorder, i+1, high-1, index + i-low+2);
         return node;
     }
-    
+
     public static void main(String args[]){
         ConstructFullTreeFromPreOrderPostOrder cft = new ConstructFullTreeFromPreOrderPostOrder();
         int preorder[] = {1,2,3,6,7,8,9};
@@ -47,4 +47,9 @@ public class ConstructFullTreeFromPreOrderPostOrder {
         tt.preOrder(root);
         tt.postOrder(root);
     }
+
+
+
 }
+
+

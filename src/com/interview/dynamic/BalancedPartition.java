@@ -16,6 +16,7 @@ public class BalancedPartition {
             S += a[i];
 
         boolean T[][] = new boolean[a.length + 1][S + 1];
+        int TI[][] = new int[a.length + 1][S + 1];
 
         /* Initialize first column as true.
             0 sum is possible with all elements.
@@ -42,7 +43,7 @@ public class BalancedPartition {
             }
         }
 
-        for(int i = 0; i< a.length; i++){
+        for(int i = 0; i< T.length; i++){
             for(int j = 0; j< S; j++)
                 System.out.print(T[i][j] ? "1 " : "0 ");
             System.out.println();
@@ -51,6 +52,8 @@ public class BalancedPartition {
         // Initialize difference of two sums.
         int diff = Integer.MAX_VALUE;
 
+        // The two halves in last row (1..S/2) and (S/2+1..n) in "T" matrix are identical
+        // TODO: Why are htey identical?
         for (int j = S / 2; j >= 0; j--) {
             // Find the
             if (T[a.length][j] == true) {
@@ -62,7 +65,9 @@ public class BalancedPartition {
     }
 
     public static void main(String[] args) {
-        int arr[] = {3, 1, 4, 2, 2, 1};
+//        int arr[] = {3, 1, 4, 2, 2, 1};
+        int arr[] = {6,2, 3, 4};
+//        int arr[] = {5, 4, 1, 3};
         System.out.println("The minimum difference between 2 sets is "
                 + findBalancePartition(arr));
     }

@@ -7,8 +7,9 @@ class Count{
 
 /**
  * http://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-sumtree/
- * A SumTree is a Binary Tree where the value of a node is equal to sum of the nodes present 
+ * A SumTree is a Binary Tree where the value of a node is equal to sum of the nodes present
  * in its left subtree and right subtree
+ *
  */
 public class SumTree {
 
@@ -16,7 +17,7 @@ public class SumTree {
         Count count = new Count();
         return isSumTree(root,count);
     }
-    
+
     private boolean isSumTree(Node root,Count count){
         if(root == null){
             return true;
@@ -32,7 +33,7 @@ public class SumTree {
         count.size = root.data + leftCount.size + rightCount.size;
         return isLeft && isRight && root.data == (leftCount.size + rightCount.size);
     }
-    
+
     public static void main(String args[]){
         ConstructTreeFromInOrderPreOrder ctf = new ConstructTreeFromInOrderPreOrder();
         int inorder[] = {4,10,6,46,11,13,2};

@@ -23,12 +23,22 @@ public class IsPreOrderArrayBST {
         int minAcceptable = Integer.MIN_VALUE;
         deque.addFirst(pre[0]);
         for(int i = 1; i < pre.length; i++) {
+            // If we find a node who is on right side
+            // and smaller than root, return false
             if(pre[i] < minAcceptable) {
                 return false;
             }
+
+            // If pre[i] is in right subtree of stack top,
+            // Keep removing items smaller than pre[i]
+            // and make the last removed item as new
+            // root.
             while(!deque.isEmpty() && deque.peekFirst() < pre[i]) {
                 minAcceptable = deque.pollFirst();
             }
+
+            // At this point either stack is empty or
+            // pre[i] is smaller than root, push pre[i]
             deque.addFirst(pre[i]);
         }
         return true;
@@ -38,9 +48,12 @@ public class IsPreOrderArrayBST {
         int start = 0;
         int min = Integer.MIN_VALUE;
         for (int i = 1; i < preorder.length; i++) {
+
             if (preorder[i] < min) {
                 return false;
             }
+
+
             if (preorder[i] > preorder[i - 1]) {
                 int index = binarySearch(preorder, start, i - 1, preorder[i]);
                 min = preorder[index];

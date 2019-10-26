@@ -12,6 +12,7 @@ import java.util.List;
  * Total number of binary search tree possible is Catalan number.
  *
  * https://leetcode.com/problems/unique-binary-search-trees-ii/
+ *
  */
 public class ConstructAllBinaryTreeFromInorderTraversal {
 
