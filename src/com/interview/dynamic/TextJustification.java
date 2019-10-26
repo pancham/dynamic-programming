@@ -56,6 +56,12 @@ public class TextJustification {
                 }
             }
         }
+
+        for(int i = 0; i< words.length; i++){
+            for(int j = 0; j< words.length; j++)
+                System.out.printf("%d ", cost[i][j]);
+            System.out.println();
+        }
         
         //minCost from i to len is found by trying
         //j between i to len and checking which

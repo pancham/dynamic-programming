@@ -55,7 +55,7 @@ public class NPotGold {
         for (int k = 0; k < pots.length; k++) {
             step = moves[i][j].pick;
             //this is the value of pick and its index
-            System.out.print("value: " + pots[step] + " " + "index: " + step + " ");
+            System.out.println("value: " + pots[step] + " " + "index: " + step + " ");
             if (step <= i) {
                 i = i + 1;
             } else {
