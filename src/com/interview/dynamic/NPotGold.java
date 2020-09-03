@@ -23,7 +23,8 @@ public class NPotGold {
                 moves[i][j] = new Pair();
             }
         }
-        
+
+        // If only one item to pick
         for(int i=0; i < pots.length; i++){
             moves[i][i].first = pots[i];
             //to track the sequence of moves
