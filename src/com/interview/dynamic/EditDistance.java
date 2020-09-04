@@ -55,9 +55,9 @@ public class EditDistance {
                 }else{
                     // 1 - current character needs to change
                     // min of
-                    //   upto previous chars in str1 and str2
-                    //   upto previous char in str1 and current char in str2
-                    //   upto current char in str1 and previous char in str2
+                    //   upto previous chars in str1 and str2 - replace
+                    //   upto previous char in str1 and current char in str2 - delete str1 [i-1]
+                    //   upto current char in str1 and previous char in - insert str2[j-1] at str1[i-1]
                     temp[i][j] = 1 + min(temp[i-1][j-1], temp[i-1][j], temp[i][j-1]);
                 }
             }
@@ -81,14 +81,16 @@ public class EditDistance {
                 i = i-1;
                 j = j-1;
             } else if (T[i][j] == T[i-1][j-1] + 1){
-                System.out.println("Edit " + str2[j-1] + " in string2 to " + str1[i-1] + " in string1");
+//                System.out.println("Edit " + str2[j-1] + " in string2 to " + str1[i-1] + " in string1");
+                System.out.println("Edit " + str1[i-1] + " in string1, position " + (i-1) + " to " + str2[j-1] + " in string2, position " + (j-1));
                 i = i-1;
                 j = j-1;
             } else if (T[i][j] == T[i-1][j] + 1) {
-                System.out.println("Delete in string1 " + str1[i-1]);
+                System.out.println("Delete in string1 " + str1[i-1] + ", position " + (i-1));
                 i = i-1;
             } else if (T[i][j] == T[i][j-1] + 1){
-                System.out.println("Delete in string2 " + str2[j-1]);
+//                System.out.println("Delete in string2 " + str2[j-1]);
+                System.out.println("Insert " + str2[j-1] +" from string2, position " + (j-1) + " at string1, position " + (i-1) );
                 j = j -1;
             } else {
                 throw new IllegalArgumentException("Some wrong with given data ");
@@ -103,9 +105,8 @@ public class EditDistance {
     }
 
     public static void main(String args[]){
-        String str1 = "azced";
+        String str1 = "azcedkkk";
         String str2 = "abcdef";
-        System.out.println("start2");
         EditDistance editDistance = new EditDistance();
         int result = editDistance.dynamicEditDistance(str1.toCharArray(), str2.toCharArray());
         System.out.print(result);
